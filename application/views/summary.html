@@ -1,0 +1,60 @@
+<div data-ng-include data-src="'application/views/loading.html'"></div>
+<div data-ng-show="loaded">
+    <h1 class="page-header">{{pollResults.title}}</h1>
+    <div class="alert alert-warning" role="alert">
+        This page would normally be possible to enable or disable using administrative settings. But for the sake of this
+        assignment it has been left enabled.
+    </div>
+    <h3>{{pollResults.question}}</h3>
+
+    <div style="text-align: center">
+        <table style="display: inline-block">
+            <tr>
+                <td>
+                    <canvas class="chart chart-pie" data-data="chartValues" data-labels="chartLabels" data-legend="true"></canvas>
+                </td>
+                <td>
+                    <table class="table" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>Answer</th>
+                                <th>Votes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="votes in pollResults.votes">
+                                <td>{{votes.answer}}</td>
+                                <td>{{votes.votes}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <p>
+            <button class="btn btn-primary" data-ng-click="navigate('back')">Back To Results</button>
+            <span data-ng-show="loaded">
+                <button class="btn btn-warning" data-ng-click="navigate('modify')">Edit Poll</button>
+                <button class="btn btn-danger" data-ng-click="resetWarning = true">Reset Poll</button>
+                <button class="btn btn-danger" data-ng-click="deleteWarning = true">Delete Poll</button>
+            </span>
+
+            <div class="alert alert-danger" role="alert" data-ng-show="resetWarning">
+                Deleting votes on this poll is irreversible. Are you sure you want to continue?
+                <span style="float: right; transform: translate(0%,-25%);">
+                    <button class="btn btn-success" data-ng-click="resetWarning = false">No! Get me out of here.</button>
+                    <button class="btn btn-danger" data-ng-click="reset()">Yes, I know what I am doing.</button>
+                </span>
+            </div>
+
+            <div class="alert alert-danger" role="alert" data-ng-show="deleteWarning">
+                Deleting a poll is irreversible. This is the 'nuclear option'. Are you sure you want to continue?
+                <span style="float: right; transform: translate(0%,-25%);">
+                    <button class="btn btn-success" data-ng-click="deleteWarning = false">No! Get me out of here.</button>
+                    <button class="btn btn-danger" data-ng-click="delete()">Yes, I know what I am doing.</button>
+                </span>
+            </div>
+        </p>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<!doctype html>
+
+<html data-ng-app="graderApp">
+    <head>
+        <meta charset="utf-8">
+        <title>301 Results</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="application/third_party/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" href="application/third_party/bootstrap/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="application/third_party/chartjs/angular-chart.css">
+
+        <!-- 3rd Party Libraries -->
+        <script src="application/third_party/angular/angular.js"></script>
+        <script src="application/third_party/angular/angular-route.js"></script>
+        <script src="application/third_party/chartjs/chart.min.js"></script>
+        <script src="application/third_party/chartjs/angular-chart.min.js"></script>
+        <script src="application/third_party/bootstrap/bootstrap.js"></script>
+
+        <!-- Page Controllers -->
+        <script src="application/controllers/app.js"></script>
+        <script src="application/controllers/controllers.js"></script>
+        <script src="application/controllers/headerController.js"></script>
+        <script src="application/controllers/graderController.js"></script>
+    </head>
+    <body>
+        <div data-ng-include data-src="'application/views/header.html'"></div>
+        <div class="container">
+            <div data-ng-view></div>
+        </div>
+    </body>
+</html>

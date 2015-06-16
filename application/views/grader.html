@@ -1,0 +1,114 @@
+<div class="alert alert-warning" role="alert"><p><b>DISCLAIMER:</b></p>In case anyone reads this the wrong way - it is harmless fun
+not intended to hurt anyone. If you feel victimised, it was not intentional and be in contact to we can fix things.</div>
+<div data-ng-show="loaded">
+    <h1 class="page-header">{{title}}</h1>
+    <div class="alert alert-info" role="alert">Click on a radio button below to answer the question.</div>
+    <form name="thecakeisalie">
+        <div data-ng-repeat="question in questions">
+            <fieldset>
+                <h4>{{$index+1}}. {{question.question}}</h4>
+                <ul class="list-group">
+                    <li data-ng-repeat="answer in question.answers" class="list-group-item">
+                        <input id="radio_{{$parent.$index}}_{{$index}}" type="radio" name="radio_{{$parent.$index}}_{{$index}}" value="{{$index}}"
+                               data-ng-model="question.answer" data-ng-change="calculate()" />
+                        <label for="radio_{{$parent.$index}}_{{$index}}">{{answer}}</label>
+                    </li>
+                </ul>
+            </fieldset>
+            <div data-ng-show="question.error != ''" class="alert alert-danger" role="alert">
+                {{question.error}}
+            </div>
+            <hr />
+        </div>
+    </form>
+
+    <style>
+        #gradeBlock
+        {
+            background-color: #000;
+            color: #FFF;
+            position: fixed;
+            width: 200px;
+            height: 175px;
+            opacity: 0.8;
+            top: 50%;
+            right: 0px;
+            text-align: center;
+            font-family: HelveticaNeue, Arial;
+            z-index: 500;
+            transform: translate(0%, -50%);
+        }
+        #gradeBlockText
+        {
+            position: relative;
+            font-size: 125px;
+            cursor: default;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        #gradeBlockOther
+        {
+            position: relative;
+            font-size: 20px;
+            top: -40px;
+            cursor: default;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        #gradeBox
+        {
+            position: relative;
+            display: inline-block;
+            width: 300px;
+            height: 150px;
+            border: 2px solid #FF0000;
+            text-align: center;
+            color: #FF0000;
+            font-family: 'Arial', 'Helvetica', san-serif;
+        }
+        #gradeCode
+        {
+            font-weight: bold;
+            font-size: 110px;
+            position: absolute;
+            top: -20px;
+            left: 0px;
+            width: 100%;
+        }
+        #gradeQuote
+        {
+            font-weight: lighter;
+            font-size: 10px;
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            right: 8px;
+        }
+    </style>
+
+    <div id="gradeBlock">
+        <div id="gradeBlockText">
+            {{mark}}
+        </div>
+        <div id="gradeBlockOther">(Est.)</div>
+    </div>
+
+    <br />
+    <div style="text-align: center">
+        <h3>Your estimated mark:</h3>
+        <div id="gradeBox">
+            <div id="gradeCode">{{mark}}</div>
+            <div id="gradeQuote">This is an entirely accurate generator. Complaints can be sent to C/- The 302 Exam, University of Canterbury, NZ.</div>
+        </div>
+    </div>
+    <br />
+</div>
